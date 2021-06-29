@@ -1,0 +1,38 @@
+﻿@model IEnumerable<WordManager2.Models.WordModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="display-3">  Lista Słówek</h1 class="display-3">
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Dodaj słówka</a>
+    <a class="btn btn-success" asp-action="Unique">Unikatowe słowa</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+ 
+            <td style="width:70%">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td style="width:40%">
+                @Html.ActionLink("Ile razy na liście?", "Occur", new { id = item.WordID }, new { @class = "btn btn-info" })
+                @Html.ActionLink("Usuń", "Delete", new { id = item.WordID }, new { @class = "btn btn-danger" })
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
